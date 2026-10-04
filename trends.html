@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Yearly Crime Trends Analysis</h2>
+<div class="card p-4 mt-3 text-center">
+    <img src="data:image/png;base64,{{ plot_trend }}" class="img-fluid" style="max-height: 480px; margin: 0 auto;">
+</div>
+{% endblock %}

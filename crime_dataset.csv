@@ -1,0 +1,301 @@
+Incident_ID,Year,Date,State,District,Crime_Type,Victim_Age,Victim_Gender,Arrest_Made,Status
+INC-02022,2024,2024-08-02,Maharashtra,Maharashtra Central,Theft,32,Male,1,Closed
+INC-02023,2025,2025-02-17,Delhi,Delhi Central,Theft,19,Male,1,Under Investigation
+INC-02024,2022,2022-03-24,Maharashtra,Maharashtra Central,Cyber Crime,32,Female,0,Pending Trial
+INC-02025,2024,2024-04-21,Maharashtra,Maharashtra Central,Fraud,39,Female,0,Pending Trial
+INC-02026,2021,2021-11-15,West Bengal,West Bengal Central,Cyber Crime,42,Male,0,Under Investigation
+INC-02027,2023,2023-01-06,Uttar Pradesh,Uttar Pradesh Central,Fraud,52,Male,0,Pending Trial
+INC-02028,2023,2023-02-15,Uttar Pradesh,Uttar Pradesh Central,Theft,63,Male,1,Closed
+INC-02029,2021,2021-04-04,Tamil Nadu,Tamil Nadu Central,Robbery,32,Male,1,Under Investigation
+INC-02030,2023,2023-02-18,Kerala,Kerala Central,Fraud,41,Female,1,Closed
+INC-02031,2022,2022-03-06,Uttar Pradesh,Uttar Pradesh Central,Robbery,52,Other,0,Under Investigation
+INC-02032,2022,2022-05-17,Kerala,Kerala Central,Cyber Crime,58,Other,1,Pending Trial
+INC-02033,2024,2024-02-15,West Bengal,West Bengal Central,Cyber Crime,70,Male,0,Under Investigation
+INC-02034,2025,2025-07-07,Gujarat,Gujarat Central,Fraud,31,Other,1,Under Investigation
+INC-02035,2025,2025-11-30,West Bengal,West Bengal Central,Robbery,43,Other,0,Pending Trial
+INC-02036,2023,2023-07-29,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,65,Other,0,Under Investigation
+INC-02037,2024,2024-01-09,Gujarat,Gujarat Central,Fraud,32,Male,1,Pending Trial
+INC-02038,2023,2023-11-10,Delhi,Delhi Central,Assault,27,Other,0,Under Investigation
+INC-02039,2021,2021-11-24,Gujarat,Gujarat Central,Robbery,42,Other,0,Pending Trial
+INC-02040,2023,2023-08-17,Uttar Pradesh,Uttar Pradesh Central,Burglary,61,Other,0,Under Investigation
+INC-02041,2025,2025-03-18,West Bengal,West Bengal Central,Fraud,45,Male,0,Pending Trial
+INC-02042,2023,2023-07-19,Uttar Pradesh,Uttar Pradesh Central,Theft,58,Female,0,Under Investigation
+INC-02043,2025,2025-09-20,Tamil Nadu,Tamil Nadu Central,Robbery,66,Male,0,Pending Trial
+INC-02044,2024,2024-01-10,Maharashtra,Maharashtra Central,Burglary,19,Male,1,Convicted
+INC-02045,2023,2023-01-14,Tamil Nadu,Tamil Nadu Central,Fraud,54,Male,0,Under Investigation
+INC-02046,2021,2021-06-25,Kerala,Kerala Central,Robbery,26,Other,0,Under Investigation
+INC-02047,2023,2023-09-01,Karnataka,Karnataka Central,Burglary,31,Other,1,Convicted
+INC-02048,2025,2025-03-27,Tamil Nadu,Tamil Nadu Central,Robbery,60,Other,1,Convicted
+INC-02049,2023,2023-02-04,Kerala,Kerala Central,Assault,32,Male,0,Under Investigation
+INC-02050,2022,2022-11-24,Tamil Nadu,Tamil Nadu Central,Theft,22,Other,0,Under Investigation
+INC-02051,2024,2024-07-16,Tamil Nadu,Tamil Nadu Central,Theft,39,Male,0,Under Investigation
+INC-02052,2023,2023-11-19,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,52,Male,1,Closed
+INC-02053,2025,2025-01-21,Kerala,Kerala Central,Burglary,69,Female,0,Pending Trial
+INC-02054,2022,2022-01-25,Delhi,Delhi Central,Theft,45,Female,1,Pending Trial
+INC-02055,2023,2023-08-15,Maharashtra,Maharashtra Central,Robbery,43,Other,0,Under Investigation
+INC-02056,2022,2022-11-26,Tamil Nadu,Tamil Nadu Central,Theft,52,Female,0,Under Investigation
+INC-02057,2021,2021-10-15,Karnataka,Karnataka Central,Assault,33,Male,1,Convicted
+INC-02058,2023,2023-06-27,Delhi,Delhi Central,Burglary,23,Male,0,Under Investigation
+INC-02059,2021,2021-12-07,Kerala,Kerala Central,Assault,43,Male,1,Closed
+INC-02060,2021,2021-12-04,Maharashtra,Maharashtra Central,Assault,68,Female,1,Pending Trial
+INC-02061,2022,2022-08-08,Kerala,Kerala Central,Assault,36,Male,0,Under Investigation
+INC-02062,2021,2021-04-30,Maharashtra,Maharashtra Central,Burglary,21,Other,1,Under Investigation
+INC-02063,2023,2023-09-04,Karnataka,Karnataka Central,Burglary,29,Male,0,Under Investigation
+INC-02064,2024,2024-05-03,Tamil Nadu,Tamil Nadu Central,Theft,54,Male,1,Under Investigation
+INC-02065,2024,2024-03-31,Maharashtra,Maharashtra Central,Burglary,60,Other,0,Pending Trial
+INC-02066,2024,2024-03-03,West Bengal,West Bengal Central,Burglary,60,Other,1,Closed
+INC-02067,2022,2022-10-06,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,60,Other,1,Closed
+INC-02068,2022,2022-09-07,West Bengal,West Bengal Central,Assault,47,Other,0,Under Investigation
+INC-02069,2024,2024-02-28,Delhi,Delhi Central,Theft,26,Female,0,Pending Trial
+INC-02070,2021,2021-05-21,West Bengal,West Bengal Central,Cyber Crime,46,Other,1,Closed
+INC-02071,2024,2024-12-11,Maharashtra,Maharashtra Central,Fraud,26,Female,1,Under Investigation
+INC-02072,2021,2021-08-25,Karnataka,Karnataka Central,Theft,56,Male,1,Pending Trial
+INC-02073,2025,2025-01-09,Tamil Nadu,Tamil Nadu Central,Fraud,34,Male,1,Convicted
+INC-02074,2021,2021-07-09,Gujarat,Gujarat Central,Robbery,18,Female,1,Under Investigation
+INC-02075,2025,2025-04-29,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,53,Other,0,Pending Trial
+INC-02076,2023,2023-05-26,Maharashtra,Maharashtra Central,Burglary,62,Male,0,Under Investigation
+INC-02077,2024,2024-01-23,West Bengal,West Bengal Central,Theft,26,Male,0,Pending Trial
+INC-02078,2022,2022-09-24,Maharashtra,Maharashtra Central,Fraud,61,Male,1,Closed
+INC-02079,2024,2024-09-27,West Bengal,West Bengal Central,Theft,33,Male,1,Closed
+INC-02080,2025,2025-06-27,Gujarat,Gujarat Central,Cyber Crime,65,Female,0,Under Investigation
+INC-02081,2025,2025-05-22,Tamil Nadu,Tamil Nadu Central,Assault,68,Other,1,Closed
+INC-02082,2021,2021-08-10,Maharashtra,Maharashtra Central,Assault,30,Female,1,Closed
+INC-02083,2022,2022-12-18,Tamil Nadu,Tamil Nadu Central,Fraud,60,Male,0,Under Investigation
+INC-02084,2023,2023-03-28,Uttar Pradesh,Uttar Pradesh Central,Fraud,40,Other,0,Pending Trial
+INC-02085,2023,2023-11-10,West Bengal,West Bengal Central,Assault,34,Male,0,Under Investigation
+INC-02086,2024,2024-04-04,Maharashtra,Maharashtra Central,Fraud,40,Other,0,Pending Trial
+INC-02087,2025,2025-05-30,Gujarat,Gujarat Central,Fraud,54,Male,0,Pending Trial
+INC-02088,2022,2022-06-06,Gujarat,Gujarat Central,Theft,41,Female,0,Under Investigation
+INC-02089,2021,2021-05-24,West Bengal,West Bengal Central,Robbery,64,Female,1,Under Investigation
+INC-02090,2023,2023-11-05,Gujarat,Gujarat Central,Fraud,62,Female,1,Convicted
+INC-02091,2024,2024-02-10,Tamil Nadu,Tamil Nadu Central,Cyber Crime,61,Other,1,Convicted
+INC-02092,2021,2021-12-23,Uttar Pradesh,Uttar Pradesh Central,Burglary,37,Female,1,Under Investigation
+INC-02093,2022,2022-03-07,West Bengal,West Bengal Central,Assault,46,Other,1,Convicted
+INC-02094,2022,2022-03-14,Kerala,Kerala Central,Burglary,36,Other,0,Under Investigation
+INC-02095,2024,2024-09-21,West Bengal,West Bengal Central,Robbery,61,Female,0,Under Investigation
+INC-02096,2022,2022-04-06,Karnataka,Karnataka Central,Cyber Crime,33,Female,0,Under Investigation
+INC-02097,2024,2024-06-05,Kerala,Kerala Central,Theft,63,Other,1,Closed
+INC-02098,2023,2023-02-26,Gujarat,Gujarat Central,Assault,59,Other,0,Under Investigation
+INC-02099,2021,2021-01-12,Gujarat,Gujarat Central,Theft,69,Other,0,Under Investigation
+INC-02100,2023,2023-11-27,Maharashtra,Maharashtra Central,Assault,47,Male,0,Under Investigation
+INC-02101,2025,2025-06-30,West Bengal,West Bengal Central,Assault,53,Female,1,Convicted
+INC-02102,2021,2021-11-22,Kerala,Kerala Central,Robbery,66,Male,1,Pending Trial
+INC-02103,2025,2025-09-17,Uttar Pradesh,Uttar Pradesh Central,Robbery,35,Female,1,Closed
+INC-02104,2021,2021-06-08,Uttar Pradesh,Uttar Pradesh Central,Robbery,39,Female,0,Pending Trial
+INC-02105,2024,2024-01-12,Karnataka,Karnataka Central,Theft,42,Other,0,Under Investigation
+INC-02106,2021,2021-11-09,Tamil Nadu,Tamil Nadu Central,Robbery,44,Female,0,Pending Trial
+INC-02107,2024,2024-01-17,Gujarat,Gujarat Central,Assault,44,Female,0,Under Investigation
+INC-02108,2025,2025-04-26,Maharashtra,Maharashtra Central,Burglary,18,Female,1,Convicted
+INC-02109,2022,2022-09-04,Gujarat,Gujarat Central,Assault,32,Female,0,Pending Trial
+INC-02110,2023,2023-06-12,Maharashtra,Maharashtra Central,Assault,60,Other,1,Pending Trial
+INC-02111,2025,2025-06-23,Karnataka,Karnataka Central,Assault,57,Other,1,Closed
+INC-02112,2021,2021-02-25,Maharashtra,Maharashtra Central,Assault,26,Female,0,Pending Trial
+INC-02113,2022,2022-01-08,Uttar Pradesh,Uttar Pradesh Central,Theft,31,Female,1,Pending Trial
+INC-02114,2022,2022-11-01,Gujarat,Gujarat Central,Fraud,34,Male,1,Convicted
+INC-02115,2023,2023-08-22,Maharashtra,Maharashtra Central,Theft,59,Male,1,Closed
+INC-02116,2025,2025-05-19,Maharashtra,Maharashtra Central,Robbery,30,Male,0,Under Investigation
+INC-02117,2024,2024-06-26,Tamil Nadu,Tamil Nadu Central,Cyber Crime,60,Male,0,Pending Trial
+INC-02118,2024,2024-03-01,Kerala,Kerala Central,Cyber Crime,28,Other,1,Pending Trial
+INC-02119,2024,2024-05-28,Delhi,Delhi Central,Robbery,24,Other,0,Pending Trial
+INC-02120,2021,2021-02-22,Gujarat,Gujarat Central,Fraud,22,Other,1,Closed
+INC-02121,2024,2024-11-15,Tamil Nadu,Tamil Nadu Central,Robbery,61,Other,0,Pending Trial
+INC-02122,2025,2025-07-08,Maharashtra,Maharashtra Central,Theft,60,Female,1,Convicted
+INC-02123,2021,2021-05-22,West Bengal,West Bengal Central,Burglary,70,Female,0,Pending Trial
+INC-02124,2021,2021-08-05,West Bengal,West Bengal Central,Assault,45,Male,1,Closed
+INC-02125,2025,2025-02-11,Uttar Pradesh,Uttar Pradesh Central,Burglary,45,Other,1,Convicted
+INC-02126,2024,2024-04-28,West Bengal,West Bengal Central,Fraud,35,Female,0,Under Investigation
+INC-02127,2022,2022-05-15,Gujarat,Gujarat Central,Assault,49,Female,1,Under Investigation
+INC-02128,2022,2022-01-08,Tamil Nadu,Tamil Nadu Central,Assault,39,Female,1,Pending Trial
+INC-02129,2024,2024-05-05,Uttar Pradesh,Uttar Pradesh Central,Robbery,23,Male,0,Under Investigation
+INC-02130,2025,2025-01-14,Kerala,Kerala Central,Assault,59,Other,0,Pending Trial
+INC-02131,2023,2023-10-03,Maharashtra,Maharashtra Central,Assault,32,Female,0,Pending Trial
+INC-02132,2024,2024-11-17,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,53,Other,1,Convicted
+INC-02133,2022,2022-12-06,West Bengal,West Bengal Central,Assault,35,Female,1,Convicted
+INC-02134,2022,2022-05-30,Delhi,Delhi Central,Cyber Crime,25,Other,0,Pending Trial
+INC-02135,2024,2024-01-03,Karnataka,Karnataka Central,Robbery,65,Female,0,Under Investigation
+INC-02136,2022,2022-07-21,Uttar Pradesh,Uttar Pradesh Central,Robbery,36,Male,0,Under Investigation
+INC-02137,2023,2023-01-10,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,35,Male,0,Under Investigation
+INC-02138,2021,2021-04-22,Uttar Pradesh,Uttar Pradesh Central,Burglary,24,Male,0,Pending Trial
+INC-02139,2024,2024-03-21,Kerala,Kerala Central,Fraud,39,Male,1,Convicted
+INC-02140,2021,2021-04-16,Kerala,Kerala Central,Fraud,43,Female,0,Under Investigation
+INC-02141,2021,2021-06-01,Maharashtra,Maharashtra Central,Burglary,69,Other,0,Under Investigation
+INC-02142,2022,2022-09-15,Tamil Nadu,Tamil Nadu Central,Theft,56,Other,0,Pending Trial
+INC-02143,2025,2025-06-08,Tamil Nadu,Tamil Nadu Central,Burglary,46,Female,1,Convicted
+INC-02144,2025,2025-10-28,Gujarat,Gujarat Central,Burglary,57,Other,1,Under Investigation
+INC-02145,2021,2021-07-23,Tamil Nadu,Tamil Nadu Central,Cyber Crime,28,Male,1,Under Investigation
+INC-02146,2021,2021-12-22,Delhi,Delhi Central,Burglary,44,Female,0,Under Investigation
+INC-02147,2024,2024-11-12,Kerala,Kerala Central,Burglary,32,Female,1,Under Investigation
+INC-02148,2024,2024-12-18,Kerala,Kerala Central,Fraud,34,Other,0,Under Investigation
+INC-02149,2024,2024-04-22,Tamil Nadu,Tamil Nadu Central,Robbery,52,Male,1,Under Investigation
+INC-02150,2024,2024-08-19,Uttar Pradesh,Uttar Pradesh Central,Cyber Crime,21,Male,0,Under Investigation
+INC-02151,2025,2025-06-12,Uttar Pradesh,Uttar Pradesh Central,Fraud,47,Other,1,Under Investigation
+INC-02152,2022,2022-09-15,Gujarat,Gujarat Central,Robbery,46,Male,1,Convicted
+INC-02153,2024,2024-05-09,Gujarat,Gujarat Central,Theft,19,Male,1,Pending Trial
+INC-02154,2022,2022-04-14,Maharashtra,Maharashtra Central,Robbery,66,Male,1,Under Investigation
+INC-02155,2023,2023-08-22,Kerala,Kerala Central,Burglary,55,Female,1,Closed
+INC-02156,2024,2024-07-24,Delhi,Delhi Central,Assault,44,Female,1,Pending Trial
+INC-02157,2022,2022-10-20,Delhi,Delhi Central,Robbery,44,Other,0,Pending Trial
+INC-02158,2023,2023-10-12,Gujarat,Gujarat Central,Fraud,23,Female,0,Pending Trial
+INC-02159,2022,2022-06-01,Delhi,Delhi Central,Fraud,60,Other,1,Under Investigation
+INC-02160,2023,2023-08-05,Maharashtra,Maharashtra Central,Assault,57,Female,0,Pending Trial
+INC-02161,2024,2024-07-04,Maharashtra,Maharashtra Central,Assault,53,Male,0,Pending Trial
+INC-02162,2022,2022-08-13,Kerala,Kerala Central,Assault,58,Other,0,Under Investigation
+INC-02163,2025,2025-06-25,Karnataka,Karnataka Central,Cyber Crime,53,Female,1,Under Investigation
+INC-02164,2021,2021-07-10,Delhi,Delhi Central,Cyber Crime,59,Male,1,Under Investigation
+INC-02165,2023,2023-10-18,Uttar Pradesh,Uttar Pradesh Central,Robbery,48,Female,1,Convicted
+INC-02166,2022,2022-05-15,Karnataka,Karnataka Central,Assault,56,Other,1,Closed
+INC-02167,2025,2025-03-09,Delhi,Delhi Central,Cyber Crime,39,Other,1,Convicted
+INC-02168,2022,2022-07-02,Uttar Pradesh,Uttar Pradesh Central,Theft,27,Female,1,Convicted
+INC-02169,2024,2024-01-09,West Bengal,West Bengal Central,Assault,47,Female,1,Convicted
+INC-02170,2025,2025-11-16,Tamil Nadu,Tamil Nadu Central,Cyber Crime,67,Female,1,Closed
+INC-02171,2021,2021-03-31,Kerala,Kerala Central,Fraud,60,Other,1,Convicted
+INC-02172,2021,2021-11-08,Maharashtra,Maharashtra Central,Assault,24,Female,0,Pending Trial
+INC-02173,2021,2021-07-24,Kerala,Kerala Central,Burglary,44,Other,0,Under Investigation
+INC-02174,2021,2021-11-13,Kerala,Kerala Central,Theft,57,Other,1,Pending Trial
+INC-02175,2023,2023-03-26,Delhi,Delhi Central,Robbery,38,Other,1,Convicted
+INC-02176,2025,2025-01-11,Maharashtra,Maharashtra Central,Assault,58,Other,0,Under Investigation
+INC-02177,2022,2022-08-12,Delhi,Delhi Central,Cyber Crime,66,Other,1,Under Investigation
+INC-02178,2024,2024-12-12,Kerala,Kerala Central,Theft,19,Male,0,Pending Trial
+INC-02179,2022,2022-10-27,Uttar Pradesh,Uttar Pradesh Central,Theft,45,Male,1,Pending Trial
+INC-02180,2022,2022-05-16,Gujarat,Gujarat Central,Burglary,29,Male,0,Under Investigation
+INC-02181,2024,2024-06-02,Tamil Nadu,Tamil Nadu Central,Assault,32,Female,1,Closed
+INC-02182,2024,2024-07-30,Kerala,Kerala Central,Fraud,69,Female,1,Under Investigation
+INC-02183,2022,2022-08-13,Karnataka,Karnataka Central,Robbery,40,Other,0,Pending Trial
+INC-02184,2022,2022-09-05,Gujarat,Gujarat Central,Robbery,37,Male,1,Convicted
+INC-02185,2023,2023-02-27,Delhi,Delhi Central,Assault,54,Female,0,Pending Trial
+INC-02186,2024,2024-03-23,Uttar Pradesh,Uttar Pradesh Central,Fraud,35,Male,0,Pending Trial
+INC-02187,2024,2024-03-05,Maharashtra,Maharashtra Central,Robbery,67,Male,1,Pending Trial
+INC-02188,2024,2024-05-28,Tamil Nadu,Tamil Nadu Central,Fraud,61,Other,0,Pending Trial
+INC-02189,2025,2025-04-21,Karnataka,Karnataka Central,Robbery,37,Female,0,Under Investigation
+INC-02190,2021,2021-03-10,West Bengal,West Bengal Central,Burglary,36,Female,0,Under Investigation
+INC-02191,2025,2025-03-11,Karnataka,Karnataka Central,Assault,68,Other,0,Under Investigation
+INC-02192,2025,2025-11-30,Uttar Pradesh,Uttar Pradesh Central,Fraud,70,Female,0,Pending Trial
+INC-02193,2025,2025-07-10,West Bengal,West Bengal Central,Fraud,22,Male,0,Pending Trial
+INC-02194,2025,2025-03-25,Gujarat,Gujarat Central,Cyber Crime,68,Female,1,Under Investigation
+INC-02195,2021,2021-01-29,Delhi,Delhi Central,Fraud,61,Other,1,Pending Trial
+INC-02196,2024,2024-10-08,Gujarat,Gujarat Central,Fraud,61,Male,1,Under Investigation
+INC-02197,2023,2023-08-24,West Bengal,West Bengal Central,Theft,58,Female,0,Under Investigation
+INC-02198,2024,2024-12-06,Gujarat,Gujarat Central,Fraud,20,Male,0,Under Investigation
+INC-02199,2022,2022-09-16,Delhi,Delhi Central,Assault,52,Male,0,Under Investigation
+INC-02200,2023,2023-03-07,West Bengal,West Bengal Central,Assault,44,Other,1,Closed
+INC-02201,2021,2021-07-22,Gujarat,Gujarat Central,Assault,62,Female,1,Under Investigation
+INC-02202,2022,2022-03-21,Kerala,Kerala Central,Assault,24,Other,0,Pending Trial
+INC-02203,2023,2023-01-23,West Bengal,West Bengal Central,Burglary,35,Male,0,Pending Trial
+INC-02204,2021,2021-09-08,Delhi,Delhi Central,Assault,21,Female,0,Under Investigation
+INC-02205,2022,2022-05-14,Tamil Nadu,Tamil Nadu Central,Cyber Crime,55,Male,0,Under Investigation
+INC-02206,2025,2025-07-24,West Bengal,West Bengal Central,Cyber Crime,35,Male,0,Under Investigation
+INC-02207,2021,2021-09-24,Uttar Pradesh,Uttar Pradesh Central,Burglary,60,Male,0,Under Investigation
+INC-02208,2021,2021-09-27,West Bengal,West Bengal Central,Theft,19,Male,0,Pending Trial
+INC-02209,2022,2022-06-28,Karnataka,Karnataka Central,Theft,65,Male,1,Under Investigation
+INC-02210,2023,2023-09-03,West Bengal,West Bengal Central,Assault,50,Male,0,Pending Trial
+INC-02211,2024,2024-06-13,Uttar Pradesh,Uttar Pradesh Central,Theft,21,Female,1,Under Investigation
+INC-02212,2025,2025-10-02,Gujarat,Gujarat Central,Assault,63,Female,0,Pending Trial
+INC-02213,2021,2021-05-31,West Bengal,West Bengal Central,Theft,26,Female,0,Under Investigation
+INC-02214,2024,2024-07-02,West Bengal,West Bengal Central,Robbery,47,Other,1,Pending Trial
+INC-02215,2024,2024-05-24,Delhi,Delhi Central,Assault,45,Female,0,Under Investigation
+INC-02216,2022,2022-04-13,West Bengal,West Bengal Central,Assault,44,Other,1,Convicted
+INC-02217,2021,2021-07-14,Gujarat,Gujarat Central,Fraud,41,Male,1,Pending Trial
+INC-02218,2024,2024-11-07,Delhi,Delhi Central,Assault,23,Female,0,Under Investigation
+INC-02219,2021,2021-07-17,West Bengal,West Bengal Central,Robbery,55,Other,0,Under Investigation
+INC-02220,2024,2024-02-25,Delhi,Delhi Central,Fraud,60,Female,1,Pending Trial
+INC-02221,2025,2025-11-13,Maharashtra,Maharashtra Central,Robbery,40,Male,1,Pending Trial
+INC-02222,2024,2024-03-29,Tamil Nadu,Tamil Nadu Central,Burglary,32,Male,0,Pending Trial
+INC-02223,2022,2022-12-19,West Bengal,West Bengal Central,Burglary,54,Male,0,Pending Trial
+INC-02224,2025,2025-07-12,Maharashtra,Maharashtra Central,Assault,29,Female,1,Under Investigation
+INC-02225,2024,2024-12-10,West Bengal,West Bengal Central,Fraud,29,Male,1,Under Investigation
+INC-02226,2024,2024-03-05,Gujarat,Gujarat Central,Robbery,65,Other,0,Under Investigation
+INC-02227,2021,2021-03-04,Tamil Nadu,Tamil Nadu Central,Theft,47,Female,1,Convicted
+INC-02228,2021,2021-11-19,Uttar Pradesh,Uttar Pradesh Central,Fraud,21,Male,1,Under Investigation
+INC-02229,2021,2021-11-19,Maharashtra,Maharashtra Central,Burglary,46,Other,0,Pending Trial
+INC-02230,2023,2023-05-19,Kerala,Kerala Central,Assault,31,Other,1,Pending Trial
+INC-02231,2021,2021-08-22,Gujarat,Gujarat Central,Fraud,61,Other,0,Pending Trial
+INC-02232,2024,2024-04-29,Uttar Pradesh,Uttar Pradesh Central,Assault,43,Other,0,Under Investigation
+INC-02233,2021,2021-04-23,Tamil Nadu,Tamil Nadu Central,Theft,67,Male,1,Closed
+INC-02234,2025,2025-04-15,Uttar Pradesh,Uttar Pradesh Central,Fraud,18,Female,1,Under Investigation
+INC-02235,2025,2025-03-10,Karnataka,Karnataka Central,Assault,52,Other,0,Pending Trial
+INC-02236,2022,2022-04-17,West Bengal,West Bengal Central,Burglary,65,Male,0,Pending Trial
+INC-02237,2023,2023-06-13,Kerala,Kerala Central,Theft,54,Female,0,Pending Trial
+INC-02238,2024,2024-03-20,Gujarat,Gujarat Central,Assault,43,Male,1,Under Investigation
+INC-02239,2022,2022-10-28,Kerala,Kerala Central,Cyber Crime,45,Male,1,Under Investigation
+INC-02240,2022,2022-05-14,Gujarat,Gujarat Central,Assault,37,Other,0,Pending Trial
+INC-02241,2022,2022-11-27,West Bengal,West Bengal Central,Cyber Crime,50,Other,0,Under Investigation
+INC-02242,2021,2021-08-22,Tamil Nadu,Tamil Nadu Central,Burglary,64,Other,1,Pending Trial
+INC-02243,2025,2025-07-28,Tamil Nadu,Tamil Nadu Central,Cyber Crime,34,Male,0,Under Investigation
+INC-02244,2021,2021-12-22,Karnataka,Karnataka Central,Burglary,67,Other,0,Under Investigation
+INC-02245,2023,2023-10-09,Kerala,Kerala Central,Assault,27,Female,1,Pending Trial
+INC-02246,2021,2021-05-20,Kerala,Kerala Central,Assault,55,Male,1,Pending Trial
+INC-02247,2022,2022-12-22,Delhi,Delhi Central,Burglary,46,Male,1,Convicted
+INC-02248,2021,2021-04-27,Uttar Pradesh,Uttar Pradesh Central,Fraud,57,Other,0,Under Investigation
+INC-02249,2023,2023-11-05,Kerala,Kerala Central,Assault,69,Other,0,Pending Trial
+INC-02250,2024,2024-08-27,West Bengal,West Bengal Central,Cyber Crime,21,Female,1,Closed
+INC-02251,2021,2021-07-31,Delhi,Delhi Central,Fraud,33,Other,0,Under Investigation
+INC-02252,2023,2023-06-16,Karnataka,Karnataka Central,Assault,36,Female,1,Pending Trial
+INC-02253,2023,2023-04-18,Maharashtra,Maharashtra Central,Fraud,39,Male,1,Under Investigation
+INC-02254,2024,2024-02-17,Gujarat,Gujarat Central,Robbery,64,Other,1,Pending Trial
+INC-02255,2024,2024-05-19,West Bengal,West Bengal Central,Cyber Crime,40,Female,0,Under Investigation
+INC-02256,2024,2024-09-05,Gujarat,Gujarat Central,Robbery,37,Other,0,Under Investigation
+INC-02257,2023,2023-02-11,West Bengal,West Bengal Central,Robbery,59,Other,0,Under Investigation
+INC-02258,2023,2023-05-18,West Bengal,West Bengal Central,Burglary,37,Male,0,Pending Trial
+INC-02259,2022,2022-03-15,Kerala,Kerala Central,Fraud,26,Male,0,Under Investigation
+INC-02260,2021,2021-06-08,Delhi,Delhi Central,Fraud,67,Other,0,Pending Trial
+INC-02261,2021,2021-09-26,Gujarat,Gujarat Central,Burglary,29,Other,0,Under Investigation
+INC-02262,2025,2025-04-29,Karnataka,Karnataka Central,Burglary,44,Female,1,Under Investigation
+INC-02263,2024,2024-10-17,Tamil Nadu,Tamil Nadu Central,Robbery,66,Other,1,Pending Trial
+INC-02264,2025,2025-05-25,Tamil Nadu,Tamil Nadu Central,Assault,69,Female,0,Pending Trial
+INC-02265,2025,2025-09-07,West Bengal,West Bengal Central,Cyber Crime,67,Female,1,Convicted
+INC-02266,2025,2025-05-13,Gujarat,Gujarat Central,Assault,69,Other,0,Under Investigation
+INC-02267,2021,2021-10-11,Maharashtra,Maharashtra Central,Fraud,53,Male,1,Pending Trial
+INC-02268,2024,2024-12-27,Delhi,Delhi Central,Burglary,66,Male,1,Under Investigation
+INC-02269,2022,2022-07-13,Karnataka,Karnataka Central,Assault,32,Female,1,Under Investigation
+INC-02270,2022,2022-12-17,Gujarat,Gujarat Central,Theft,50,Female,0,Pending Trial
+INC-02271,2022,2022-04-28,Delhi,Delhi Central,Assault,19,Female,1,Closed
+INC-02272,2021,2021-07-22,West Bengal,West Bengal Central,Robbery,20,Female,0,Under Investigation
+INC-02273,2025,2025-08-27,Karnataka,Karnataka Central,Assault,57,Male,1,Convicted
+INC-02274,2021,2021-06-12,Uttar Pradesh,Uttar Pradesh Central,Theft,53,Other,0,Under Investigation
+INC-02275,2024,2024-05-31,Gujarat,Gujarat Central,Burglary,33,Female,0,Pending Trial
+INC-02276,2021,2021-09-07,Tamil Nadu,Tamil Nadu Central,Theft,22,Male,1,Convicted
+INC-02277,2025,2025-09-10,Maharashtra,Maharashtra Central,Assault,36,Female,0,Under Investigation
+INC-02278,2021,2021-01-04,West Bengal,West Bengal Central,Burglary,29,Other,0,Pending Trial
+INC-02279,2024,2024-09-30,West Bengal,West Bengal Central,Theft,42,Female,0,Under Investigation
+INC-02280,2021,2021-03-31,Gujarat,Gujarat Central,Robbery,65,Male,1,Pending Trial
+INC-02281,2023,2023-01-02,West Bengal,West Bengal Central,Theft,67,Other,0,Under Investigation
+INC-02282,2025,2025-02-14,Karnataka,Karnataka Central,Fraud,52,Female,0,Pending Trial
+INC-02283,2025,2025-07-25,Karnataka,Karnataka Central,Robbery,58,Male,1,Convicted
+INC-02284,2025,2025-07-20,Delhi,Delhi Central,Cyber Crime,36,Male,1,Under Investigation
+INC-02285,2021,2021-03-31,Maharashtra,Maharashtra Central,Cyber Crime,50,Female,1,Pending Trial
+INC-02286,2025,2025-07-28,Kerala,Kerala Central,Burglary,66,Other,1,Under Investigation
+INC-02287,2022,2022-01-27,West Bengal,West Bengal Central,Fraud,35,Male,0,Pending Trial
+INC-02288,2025,2025-06-26,Gujarat,Gujarat Central,Fraud,42,Female,1,Convicted
+INC-02289,2022,2022-01-18,Kerala,Kerala Central,Assault,69,Male,1,Pending Trial
+INC-02290,2025,2025-01-29,Delhi,Delhi Central,Assault,52,Female,1,Closed
+INC-02291,2022,2022-10-20,Delhi,Delhi Central,Theft,37,Female,1,Pending Trial
+INC-02292,2024,2024-05-19,Gujarat,Gujarat Central,Robbery,40,Female,0,Pending Trial
+INC-02293,2021,2021-03-28,West Bengal,West Bengal Central,Robbery,58,Male,1,Pending Trial
+INC-02294,2021,2021-06-03,Gujarat,Gujarat Central,Robbery,19,Male,1,Closed
+INC-02295,2025,2025-10-05,Kerala,Kerala Central,Burglary,22,Male,0,Under Investigation
+INC-02296,2025,2025-05-14,West Bengal,West Bengal Central,Robbery,54,Male,1,Convicted
+INC-02297,2024,2024-05-24,Kerala,Kerala Central,Cyber Crime,46,Male,1,Pending Trial
+INC-02298,2024,2024-03-21,West Bengal,West Bengal Central,Cyber Crime,59,Female,1,Pending Trial
+INC-02299,2022,2022-05-27,Maharashtra,Maharashtra Central,Theft,51,Female,0,Pending Trial
+INC-02300,2024,2024-02-25,Uttar Pradesh,Uttar Pradesh Central,Theft,31,Other,1,Convicted
+INC-02301,2022,2022-08-08,Kerala,Kerala Central,Robbery,26,Male,0,Under Investigation
+INC-02302,2023,2023-07-15,Kerala,Kerala Central,Cyber Crime,60,Female,0,Pending Trial
+INC-02303,2024,2024-12-24,Uttar Pradesh,Uttar Pradesh Central,Theft,63,Other,1,Closed
+INC-02304,2024,2024-12-05,Karnataka,Karnataka Central,Robbery,25,Male,1,Closed
+INC-02305,2025,2025-06-11,Tamil Nadu,Tamil Nadu Central,Cyber Crime,41,Other,1,Under Investigation
+INC-02306,2024,2024-03-18,Kerala,Kerala Central,Fraud,22,Female,0,Under Investigation
+INC-02307,2023,2023-03-27,Kerala,Kerala Central,Robbery,70,Other,1,Convicted
+INC-02308,2021,2021-06-01,West Bengal,West Bengal Central,Cyber Crime,47,Other,0,Pending Trial
+INC-02309,2023,2023-11-26,Karnataka,Karnataka Central,Fraud,45,Other,0,Under Investigation
+INC-02310,2025,2025-11-14,Delhi,Delhi Central,Theft,28,Male,0,Pending Trial
+INC-02311,2022,2022-10-23,Tamil Nadu,Tamil Nadu Central,Robbery,23,Female,1,Pending Trial
+INC-02312,2022,2022-02-07,Uttar Pradesh,Uttar Pradesh Central,Robbery,57,Other,0,Pending Trial
+INC-02313,2021,2021-07-11,Karnataka,Karnataka Central,Burglary,60,Other,0,Under Investigation
+INC-02314,2025,2025-01-15,West Bengal,West Bengal Central,Burglary,23,Male,0,Under Investigation
+INC-02315,2024,2024-08-06,Uttar Pradesh,Uttar Pradesh Central,Burglary,57,Other,0,Pending Trial
+INC-02316,2021,2021-03-04,Uttar Pradesh,Uttar Pradesh Central,Assault,33,Other,1,Convicted
+INC-02317,2023,2023-04-12,Kerala,Kerala Central,Fraud,28,Female,0,Under Investigation
+INC-02318,2023,2023-05-02,Kerala,Kerala Central,Assault,56,Male,0,Pending Trial
+INC-02319,2022,2022-10-03,West Bengal,West Bengal Central,Robbery,26,Female,1,Convicted
+INC-02320,2023,2023-11-21,Delhi,Delhi Central,Burglary,47,Male,1,Closed
+INC-02321,2022,2022-07-02,Tamil Nadu,Tamil Nadu Central,Assault,21,Female,0,Under Investigation

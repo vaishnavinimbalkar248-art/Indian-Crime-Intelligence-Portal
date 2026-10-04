@@ -1,0 +1,51 @@
+Name,Age,Gender,State,City,Crime_Type,Location,Arrest,Date
+Aarav Sharma,36,Male,Maharashtra,Pune,Fraud,Public Transport,Yes,13-05-2025 15:42
+Aditi Deshmukh,50,Female,Rajasthan,Jaipur,Theft,Bank,No,02-07-2026 17:39
+Arjun Yadav,57,Male,Rajasthan,Jaipur,Burglary,Online,Yes,03-02-2023 04:22
+Ananya Bose,41,Female,Gujarat,Surat,Burglary,Street,No,13-04-2022 02:12
+Rohan Menon,33,Male,Maharashtra,Nashik,Cyber Crime,Public Place,No,10-04-2025 16:48
+Sneha Nair,38,Female,Haryana,Gurugram,Theft,Street,No,05-02-2022 08:44
+Vikram Gupta,59,Male,Odisha,Bhubaneswar,Assault,Office,No,14-03-2025 08:47
+Priya More,23,Female,Haryana,Gurugram,Theft,House,No,26-01-2022 11:06
+Rahul Bhat,53,Male,Odisha,Bhubaneswar,Assault,Bank,No,20-06-2023 03:51
+Kavya Kulkarni,34,Female,Gujarat,Ahmedabad,Fraud,Market,Yes,16-07-2025 20:12
+Aditya Khan,18,Male,Bihar,Patna,Fraud,Bank,No,16-02-2022 19:19
+Isha Sinha,37,Female,Karnataka,Bengaluru,Theft,Mall,Yes,27-05-2025 13:20
+Sahil Agarwal,38,Male,Gujarat,Ahmedabad,Burglary,Mall,No,08-10-2024 15:42
+Neha Patil,42,Female,Uttar Pradesh,Lucknow,Theft,Office,Yes,14-02-2024 02:10
+Karan Mehta,35,Male,Assam,Guwahati,Theft,Public Transport,Yes,18-03-2022 06:38
+Pooja Kapoor,30,Female,Madhya Pradesh,Indore,Fraud,Online,No,03-08-2022 22:01
+Manish Thakur,35,Male,Assam,Guwahati,Theft,Public Transport,Yes,29-09-2024 09:49
+Riya Chavan,49,Female,Maharashtra,Nagpur,Theft,House,No,05-07-2021 18:31
+Nikhil Joshi,47,Male,Odisha,Bhubaneswar,Assault,House,Yes,10-11-2021 11:56
+Tanvi Iyer,33,Female,Kerala,Kochi,Theft,Street,No,21-07-2024 14:34
+Dev Malhotra,48,Male,Tamil Nadu,Chennai,Cyber Crime,Market,No,14-02-2026 11:52
+Meera Kumar,37,Female,Karnataka,Bengaluru,Theft,Market,No,16-01-2025 18:56
+Yash Singh,26,Male,Maharashtra,Nagpur,Fraud,Office,Yes,28-07-2023 16:53
+Simran Reddy,50,Female,Gujarat,Surat,Robbery,Bank,No,30-10-2025 00:28
+Mohit Jain,45,Male,Maharashtra,Nagpur,Robbery,Street,Yes,17-04-2024 02:16
+Nandini Pawar,32,Female,Maharashtra,Nashik,Theft,Residence,No,15-10-2023 04:31
+Varun Verma,57,Male,Haryana,Gurugram,Assault,Mall,No,18-12-2021 07:11
+Sakshi Shah,59,Female,Karnataka,Bengaluru,Burglary,House,Yes,16-02-2021 03:38
+Ritesh Rao,39,Male,Karnataka,Bengaluru,Fraud,Public Place,No,30-09-2023 16:06
+Diya Kaur,32,Female,Bihar,Patna,Robbery,Mall,Yes,04-07-2022 22:53
+Akash Sharma,56,Male,Tamil Nadu,Chennai,Fraud,Residence,Yes,29-08-2025 00:14
+Shruti Deshmukh,30,Female,Kerala,Kochi,Fraud,Online,No,16-10-2024 02:51
+Vivek Yadav,57,Male,Telangana,Hyderabad,Theft,Market,No,10-08-2021 14:45
+Pallavi Bose,53,Female,Rajasthan,Jaipur,Assault,Public Transport,No,03-02-2023 07:26
+Siddharth Menon,40,Male,West Bengal,Kolkata,Cyber Crime,Market,Yes,22-08-2022 14:55
+Komal Nair,36,Female,Rajasthan,Jaipur,Cyber Crime,Public Place,No,03-04-2021 07:10
+Abhishek Gupta,56,Male,Bihar,Patna,Assault,Mall,No,09-01-2026 05:21
+Swati More,34,Female,Telangana,Hyderabad,Burglary,Street,Yes,24-09-2024 09:50
+Raj Bhat,28,Male,Maharashtra,Mumbai,Burglary,Residence,Yes,13-04-2026 22:44
+Nisha Kulkarni,43,Female,Punjab,Amritsar,Theft,Public Transport,Yes,05-01-2022 08:48
+Omkar Khan,59,Male,Assam,Guwahati,Theft,Mall,Yes,20-05-2025 07:41
+Mrunal Sinha,23,Female,Maharashtra,Nashik,Theft,Online,No,18-04-2022 06:42
+Harsh Agarwal,42,Male,Odisha,Bhubaneswar,Burglary,Residence,No,30-11-2024 18:23
+Radhika Patil,23,Female,Maharashtra,Pune,Cyber Crime,Residence,Yes,02-03-2025 19:49
+Pranav Mehta,39,Male,Assam,Guwahati,Cyber Crime,Online,Yes,12-09-2022 03:10
+Shreya Kapoor,19,Female,Assam,Guwahati,Fraud,Mall,Yes,20-03-2026 11:58
+Kunal Thakur,36,Male,Punjab,Amritsar,Fraud,Public Place,No,16-10-2021 17:58
+Divya Chavan,38,Female,Punjab,Amritsar,Theft,Bank,Yes,15-07-2025 10:22
+Rohit Joshi,52,Male,Karnataka,Bengaluru,Robbery,Market,No,04-09-2025 06:00
+Payal Iyer,43,Female,Odisha,Bhubaneswar,Assault,House,Yes,22-11-2025 18:04

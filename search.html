@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Search & Filter Records</h2>
+<form method="GET" action="/search" class="row g-3 mb-4 mt-2">
+    <div class="col-md-3">
+        <label class="form-label">State</label>
+        <select name="state" class="form-select">
+            <option value="All">All States</option>
+            {% for s in states %}
+            <option value="{{ s }}" {% if sel_state == s %}selected{% endif %}>{{ s }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Crime Type</label>
+        <select name="crime_type" class="form-select">
+            <option value="All">All Types</option>
+            {% for c in crime_types %}
+            <option value="{{ c }}" {% if sel_crime == c %}selected{% endif %}>{{ c }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Year</label>
+        <select name="year" class="form-select">
+            <option value="All">All Years</option>
+            {% for y in years %}
+            <option value="{{ y }}" {% if sel_year == y %}selected{% endif %}>{{ y }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Apply Filter</button>
+    </div>
+</form>
+
+<div class="card p-3">
+    <p>Showing <strong>{{ records | length }}</strong> records</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Incident ID</th><th>Name</th><th>State</th><th>City</th><th>Crime Type</th><th>Arrest</th><th>Date</th></tr>
+        </thead>
+        <tbody>
+            {% for r in records %}
+            <tr>
+                <td>{{ r.incident_id }}</td>
+                <td>{{ r.name }}</td>
+                <td>{{ r.state }}</td>
+                <td>{{ r.city }}</td>
+                <td>{{ r.crime_type }}</td>
+                <td><span class="badge {% if r.arrest == 'Yes' %}bg-success{% else %}bg-danger{% endif %}">{{ r.arrest }}</span></td>
+                <td>{{ r.date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

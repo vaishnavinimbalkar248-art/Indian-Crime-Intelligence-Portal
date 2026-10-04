@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Officer Registration Portal</h2>
+<p>Welcome, <strong>{{ session.get('officer_name') }}</strong> (Badge: {{ session.get('badge_id') }})</p>
+
+<div class="card p-4 mt-3">
+    <h4>Add New Crime Incident</h4>
+    <form method="POST" action="/add-crime-record" class="row g-3">
+        <div class="col-md-3"><label>Incident ID</label><input type="text" name="incident_id" class="form-control" placeholder="INC-99999" required></div>
+        <div class="col-md-3"><label>Person Name</label><input type="text" name="name" class="form-control" required></div>
+        <div class="col-md-2"><label>Age</label><input type="number" name="age" class="form-control" required></div>
+        <div class="col-md-4"><label>Gender</label>
+            <select name="gender" class="form-select"><option>Male</option><option>Female</option><option>Other</option></select>
+        </div>
+        <div class="col-md-3"><label>State</label><input type="text" name="state" class="form-control" required></div>
+        <div class="col-md-3"><label>City</label><input type="text" name="city" class="form-control" required></div>
+        <div class="col-md-3"><label>Crime Type</label><input type="text" name="crime_type" class="form-control" required></div>
+        <div class="col-md-3"><label>Location</label><input type="text" name="location" class="form-control" required></div>
+        <div class="col-md-3"><label>Arrest Made?</label>
+            <select name="arrest" class="form-select"><option>Yes</option><option>No</option></select>
+        </div>
+        <div class="col-md-4"><label>Date (DD-MM-YYYY HH:MM)</label><input type="text" name="date" class="form-control" placeholder="15-08-2026 10:30" required></div>
+        <div class="col-md-12"><button type="submit" class="btn btn-success">Register Incident</button></div>
+    </form>
+</div>
+{% endblock %}

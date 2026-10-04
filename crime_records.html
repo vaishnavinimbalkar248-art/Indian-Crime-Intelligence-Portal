@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Crime Records Registry</h2>
+<div class="card p-3 mt-3">
+    <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Incident ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Crime Type</th>
+                    <th>Location</th>
+                    <th>Arrest Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                <tr>
+                    <td><strong>{{ r.incident_id }}</strong></td>
+                    <td>{{ r.name }}</td>
+                    <td>{{ r.age }}</td>
+                    <td>{{ r.gender }}</td>
+                    <td>{{ r.state }}</td>
+                    <td>{{ r.city }}</td>
+                    <td>{{ r.crime_type }}</td>
+                    <td>{{ r.location }}</td>
+                    <td><span class="badge {% if r.arrest == 'Yes' %}bg-success{% else %}bg-danger{% endif %}">{{ r.arrest }}</span></td>
+                    <td>{{ r.date }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

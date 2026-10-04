@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | Indian Crime Portal{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-navy mb-1">Executive Summary Dashboard</h2>
+        <p class="text-muted small mb-0">Dynamic metrics calculated directly from database records</p>
+    </div>
+</div>
+
+<!-- 6 Statistic Cards Grid -->
+<div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-primary border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Total Crime Records</div>
+                        <div class="fs-2 fw-bold text-navy">{{ total_crimes }}</div>
+                    </div>
+                    <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-circle fs-3"><i class="fa-solid fa-folder-open"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-info border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Total States Covered</div>
+                        <div class="fs-2 fw-bold text-navy">{{ total_states }}</div>
+                    </div>
+                    <div class="bg-info bg-opacity-10 text-info p-3 rounded-circle fs-3"><i class="fa-solid fa-map"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-secondary border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Total Cities Covered</div>
+                        <div class="fs-2 fw-bold text-navy">{{ total_cities }}</div>
+                    </div>
+                    <div class="bg-secondary bg-opacity-10 text-secondary p-3 rounded-circle fs-3"><i class="fa-solid fa-city"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-danger border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="w-75">
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Most Common Crime</div>
+                        <div class="fs-4 fw-bold text-navy text-truncate" title="{{ most_common_crime }}">{{ most_common_crime }}</div>
+                    </div>
+                    <div class="bg-danger bg-opacity-10 text-danger p-3 rounded-circle fs-3"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-warning border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="w-75">
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Highest Crime State</div>
+                        <div class="fs-4 fw-bold text-navy text-truncate" title="{{ highest_crime_state }}">{{ highest_crime_state }}</div>
+                    </div>
+                    <div class="bg-warning bg-opacity-10 text-warning p-3 rounded-circle fs-3"><i class="fa-solid fa-location-dot"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card stat-card border-0 shadow-sm border-start border-success border-4 h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <div class="text-uppercase text-muted fw-bold small mb-1">Total Arrests Made</div>
+                        <div class="fs-2 fw-bold text-success">{{ total_arrests }}</div>
+                    </div>
+                    <div class="bg-success bg-opacity-10 text-success p-3 rounded-circle fs-3"><i class="fa-solid fa-handcuffs"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- All 10 Interactive Charts Grid -->
+<div class="row g-4 mb-4">
+    <!-- Chart 1 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">1. Crime Type Frequency</div>
+            <div class="card-body"><canvas id="chartCrimeType"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 2 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">2. Year-wise Crime Trend</div>
+            <div class="card-body"><canvas id="chartYearTrend"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 3 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">3. Monthly Crime Trend</div>
+            <div class="card-body"><canvas id="chartMonthlyTrend"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 4 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">4. Crime by Location</div>
+            <div class="card-body"><canvas id="chartLocation"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 5 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">5. Day vs Night Crime</div>
+            <div class="card-body"><canvas id="chartDayNight"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 6 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">6. Crime Type Distribution</div>
+            <div class="card-body" style="height: 300px;"><canvas id="chartCrimeDistribution"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 7 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">7. Arrest Statistics</div>
+            <div class="card-body" style="height: 300px;"><canvas id="chartArrest"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 8 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">8. Age Distribution</div>
+            <div class="card-body"><canvas id="chartAgeHistogram"></canvas></div>
+        </div>
+    </div>
+    <!-- Chart 9 -->
+    <div class="col-12 col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">9. Age Box Plot</div>
+            <div class="card-body"><div id="chartAgeBoxPlot" style="height: 280px;"></div></div>
+        </div>
+    </div>
+    <!-- Chart 10 -->
+    <div class="col-12">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white fw-bold text-navy">10. State vs Crime Type Heatmap</div>
+            <div class="card-body"><div id="chartStateCrimeHeatmap" style="height: 400px;"></div></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+{% endblock %}

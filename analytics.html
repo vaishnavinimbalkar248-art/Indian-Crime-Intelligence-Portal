@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Detailed Analytics</h2>
+<div class="row mt-3">
+    <div class="col-md-4">
+        <div class="card p-2 text-center mb-3">
+            <img src="data:image/png;base64,{{ plot_type }}" class="img-fluid">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-2 text-center mb-3">
+            <img src="data:image/png;base64,{{ plot_arrest }}" class="img-fluid">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card p-2 text-center mb-3">
+            <img src="data:image/png;base64,{{ plot_gender }}" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock %}

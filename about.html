@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>About Crime Analytics Portal</h2>
+<div class="card p-4 mt-3">
+    <p>This web application generates statistical crime analysis based on historical records from 2021 to 2026.</p>
+    <ul>
+        <li><strong>Dataset Integration:</strong> Automatically synced from <code>indian_crime_data_2021_2026_with_names.csv</code> into SQLite.</li>
+        <li><strong>Server-Side Chart Rendering:</strong> Powered by Matplotlib and Seaborn directly in Flask for zero rendering bugs.</li>
+        <li><strong>Officer Management:</strong> Authenticated portal for updating official records.</li>
+    </ul>
+</div>
+{% endblock %}

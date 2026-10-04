@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Crime Analytics Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .card { border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.08); }
+        .chart-box { position: relative; height: 280px; width: 100%; }
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Crime Analytics Portal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link nav-btn active" onclick="showView('dashboard')">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('records')">Crime Records</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('search')">Search & Filter</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('analytics')">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('state-analysis')">State Analysis</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('trends')">Crime Trends</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('reports')">Reports</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('about')">About</a></li>
+                    <li class="nav-item"><a class="nav-link nav-btn" onclick="showView('crime-map')">🗺️ Crime Map</a></li>
+                </ul>
+                <ul class="navbar-nav ms-auto" id="auth-nav-container">
+                    <li class="nav-item"><a class="nav-link btn btn-primary btn-sm text-white px-3" onclick="showView('officer-login')">Officer Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div id="alert-container"></div>
+
+        <!-- 1. DASHBOARD -->
+        <div id="view-dashboard" class="view-section active">
+            <h2 class="mb-3">Dashboard Overview</h2>
+            <div class="row text-center mb-4">
+                <div class="col-md-3 mb-2"><div class="card p-3 bg-primary text-white"><h5>Total Records</h5><h3 id="dash-total">0</h3></div></div>
+                <div class="col-md-3 mb-2"><div class="card p-3 bg-warning text-dark"><h5>Top Crime Type</h5><h3 id="dash-top-crime">-</h3></div></div>
+                <div class="col-md-3 mb-2"><div class="card p-3 bg-success text-white"><h5>Arrest Rate</h5><h3 id="dash-arrest-rate">0%</h3></div></div>
+                <div class="col-md-3 mb-2"><div class="card p-3 bg-info text-white"><h5>States Covered</h5><h3 id="dash-states">0</h3></div></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Crimes by Type</h6><div class="chart-box"><canvas id="dashTypeChart"></canvas></div></div></div>
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Incidents by State</h6><div class="chart-box"><canvas id="dashStateChart"></canvas></div></div></div>
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Yearly Trend</h6><div class="chart-box"><canvas id="dashYearChart"></canvas></div></div></div>
+            </div>
+        </div>
+
+        <!-- 2. CRIME RECORDS -->
+        <div id="view-records" class="view-section">
+            <h2 class="mb-3">Crime Records Registry</h2>
+            <div class="card p-3">
+                <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+                    <table class="table table-striped table-hover align-middle mb-0">
+                        <thead class="table-dark sticky-top">
+                            <tr><th>Incident ID</th><th>Name</th><th>Age</th><th>Gender</th><th>State</th><th>City</th><th>Crime Type</th><th>Location</th><th>Arrest</th><th>Date</th></tr>
+                        </thead>
+                        <tbody id="records-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. SEARCH & FILTER -->
+        <div id="view-search" class="view-section">
+            <h2 class="mb-3">Search & Filter Records</h2>
+            <div class="row g-3 mb-4 card p-3 bg-white">
+                <div class="col-md-3"><label class="form-label">State</label><select id="filter-state" class="form-select" onchange="applyFilters()"><option value="All">All States</option></select></div>
+                <div class="col-md-3"><label class="form-label">Crime Type</label><select id="filter-crime" class="form-select" onchange="applyFilters()"><option value="All">All Types</option></select></div>
+                <div class="col-md-3"><label class="form-label">Year</label><select id="filter-year" class="form-select" onchange="applyFilters()"><option value="All">All Years</option></select></div>
+                <div class="col-md-3"><label class="form-label">Arrest Status</label><select id="filter-arrest" class="form-select" onchange="applyFilters()"><option value="All">All Statuses</option><option value="Yes">Yes</option><option value="No">No</option></select></div>
+            </div>
+            <div class="card p-3">
+                <p>Showing <strong id="filter-count">0</strong> matching records</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-dark"><tr><th>Incident ID</th><th>Name</th><th>State</th><th>City</th><th>Crime Type</th><th>Arrest</th><th>Date</th></tr></thead>
+                        <tbody id="search-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ANALYTICS -->
+        <div id="view-analytics" class="view-section">
+            <h2 class="mb-3">Detailed Analytics</h2>
+            <div class="row">
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Distribution by Crime Type</h6><div class="chart-box"><canvas id="analyticsTypeChart"></canvas></div></div></div>
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Arrest Status (Yes vs No)</h6><div class="chart-box"><canvas id="analyticsArrestChart"></canvas></div></div></div>
+                <div class="col-md-4 mb-3"><div class="card p-3"><h6 class="text-center">Gender Demographics</h6><div class="chart-box"><canvas id="analyticsGenderChart"></canvas></div></div></div>
+            </div>
+        </div>
+
+        <!-- 5. STATE ANALYSIS -->
+        <div id="view-state-analysis" class="view-section">
+            <h2 class="mb-3">State-wise Crime Breakdown</h2>
+            <div class="card p-3">
+                <table class="table table-hover">
+                    <thead class="table-dark"><tr><th>State</th><th>Total Incidents</th><th>Arrests Made</th><th>Most Frequent Crime</th></tr></thead>
+                    <tbody id="state-analysis-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 6. CRIME TRENDS -->
+        <div id="view-trends" class="view-section">
+            <h2 class="mb-3">Yearly Crime Trends Analysis</h2>
+            <div class="card p-4 text-center">
+                <div class="chart-box" style="height: 400px;"><canvas id="trendsChart"></canvas></div>
+            </div>
+        </div>
+
+        <!-- 7. REPORTS -->
+        <div id="view-reports" class="view-section">
+            <h2 class="mb-3">Reports & Data Export</h2>
+
+            <div class="card p-4 mb-4">
+                <h5>Active Dataset Summary</h5>
+                <ul class="mb-3">
+                    <li>Total Records: <strong id="rep-total">0</strong></li>
+                    <li>Arrests Made: <strong id="rep-arrests">0</strong></li>
+                    <li>Unique States: <strong id="rep-states">0</strong></li>
+                </ul>
+
+                <button onclick="downloadCSV()" class="btn btn-success">📥 Export Complete CSV</button>
+                <button onclick="resetDataset()" class="btn btn-outline-danger ms-2">Reset Dataset to Default</button>
+            </div>
+
+            <div class="card p-4 mb-4">
+                <h5>🇮🇳 State-wise CSV Export</h5>
+                <p class="text-muted">Select a state and download only the crime records belonging to that state.</p>
+                <div class="row g-2">
+                    <div class="col-md-8">
+                        <select id="export-state-select" class="form-select">
+                            <option value="">Select State</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button onclick="exportStateCSV()" class="btn btn-primary w-100">📥 Download State CSV</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4 mb-4">
+                <h5>🔎 Crime-Type-wise CSV Export</h5>
+                <p class="text-muted">Select a crime type and download only those crime records.</p>
+                <div class="row g-2">
+                    <div class="col-md-8">
+                        <select id="export-crime-select" class="form-select">
+                            <option value="">Select Crime Type</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button onclick="exportCrimeTypeCSV()" class="btn btn-warning w-100">📥 Download Crime-Type CSV</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card p-4 mb-4">
+                <h5>🎯 Export Filtered Records</h5>
+                <p class="text-muted">Download the records currently matching the Search & Filter options.</p>
+                <button onclick="exportFilteredCSV()" class="btn btn-info">📥 Download Filtered CSV</button>
+            </div>
+        </div>
+
+        <!-- 8. ABOUT -->
+        <div id="view-about" class="view-section">
+            <h2 class="mb-3">About Crime Analytics Portal</h2>
+            <div class="card p-4">
+                <p>This web application generates statistical crime analysis based on historical records from 2021 to 2026.</p>
+                <ul>
+                    <li><strong>Dataset Integration:</strong> Synced from <code>indian_crime_data_2021_2026_with_names.csv</code> into browser local storage.</li>
+                    <li><strong>Persistent Storage:</strong> Newly added records via Officer Dashboard automatically save to browser memory.</li>
+                    <li><strong>Interactive Visualization:</strong> Dynamic client-side chart generation powered by Chart.js.</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- CRIME MAP -->
+        <div id="view-crime-map" class="view-section">
+            <h2 class="mb-3">🗺️ Crime Location Map</h2>
+
+            <div class="card p-3 mb-3">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label class="form-label">State</label>
+                        <select id="map-filter-state" class="form-select" onchange="handleMapStateChange()">
+                            <option value="All">All States</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">City</label>
+                        <select id="map-filter-city" class="form-select" onchange="renderCrimeMap()">
+                            <option value="All">All Cities</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Crime Type</label>
+                        <select id="map-filter-crime" class="form-select" onchange="renderCrimeMap()">
+                            <option value="All">All Crime Types</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Year</label>
+                        <select id="map-filter-year" class="form-select" onchange="renderCrimeMap()">
+                            <option value="All">All Years</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <span class="badge bg-primary" id="map-crime-count">0 crimes shown</span>
+                    <span class="text-muted ms-2">Markers represent the recorded city.</span>
+                </div>
+            </div>
+
+            <div class="card p-2">
+                <div id="crime-map" style="height: 600px; width: 100%; border-radius: 8px;"></div>
+            </div>
+
+            <div class="card p-3 mt-3">
+                <h5>About the Crime Map</h5>
+                <p class="mb-1">
+                    The map uses the <strong>State</strong> and <strong>City</strong>
+                    already stored in your crime records.
+                </p>
+                <p class="mb-0 text-muted">
+                    Your current records contain city-level information rather than
+                    exact latitude/longitude coordinates, so markers show the
+                    approximate geographic position of the recorded city.
+                </p>
+            </div>
+        </div>
+
+        <!-- 9. OFFICER LOGIN -->
+        <div id="view-officer-login" class="view-section">
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-4">
+                    <div class="card p-4">
+                        <h3 class="text-center mb-3">Officer Login</h3>
+                        <form onsubmit="handleOfficerLogin(event)">
+                            <div class="mb-3"><label>Badge ID</label><input type="text" id="login-badge" class="form-control" placeholder="OFF-1001" required></div>
+                            <div class="mb-3"><label>Password</label><input type="password" id="login-password" class="form-control" placeholder="Officer@123" required></div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. OFFICER DASHBOARD -->
+        <div id="view-officer-dashboard" class="view-section">
+            <h2>Officer Registration Portal</h2>
+            <p>Welcome, <strong id="logged-officer-name">Officer</strong></p>
+            <div class="card p-4 mt-3">
+                <h4>Add New Crime Incident</h4>
+                <form onsubmit="handleAddIncident(event)" class="row g-3">
+                    <div class="col-md-3"><label>Incident ID</label><input type="text" id="add-inc-id" class="form-control" placeholder="INC-99999" required></div>
+                    <div class="col-md-3"><label>Person Name</label><input type="text" id="add-name" class="form-control" required></div>
+                    <div class="col-md-2"><label>Age</label><input type="number" id="add-age" class="form-control" required></div>
+                    <div class="col-md-4"><label>Gender</label><select id="add-gender" class="form-select"><option>Male</option><option>Female</option><option>Other</option></select></div>
+                    <div class="col-md-3"><label>State</label><input type="text" id="add-state" class="form-control" required></div>
+                    <div class="col-md-3"><label>City</label><input type="text" id="add-city" class="form-control" required></div>
+                    <div class="col-md-3"><label>Crime Type</label><input type="text" id="add-crime" class="form-control" required></div>
+                    <div class="col-md-3"><label>Location</label><input type="text" id="add-location" class="form-control" required></div>
+                    <div class="col-md-3"><label>Arrest Made?</label><select id="add-arrest" class="form-select"><option>Yes</option><option>No</option></select></div>
+                    <div class="col-md-4"><label>Date (DD-MM-YYYY HH:MM)</label><input type="text" id="add-date" class="form-control" placeholder="15-08-2026 10:30" required></div>
+                    <div class="col-md-12"><button type="submit" class="btn btn-success">Register Incident</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const initialDataset = [
+            {"Incident_ID":"INC-02021","Name":"Aarav Sharma","Age":36,"Gender":"Male","State":"Maharashtra","City":"Pune","Crime_Type":"Fraud","Location":"Public Transport","Arrest":"Yes","Date":"13-05-2025 15:42"},
+            {"Incident_ID":"INC-02022","Name":"Aditi Deshmukh","Age":50,"Gender":"Female","State":"Rajasthan","City":"Jaipur","Crime_Type":"Theft","Location":"Bank","Arrest":"No","Date":"02-07-2026 17:39"},
+            {"Incident_ID":"INC-02023","Name":"Arjun Yadav","Age":57,"Gender":"Male","State":"Rajasthan","City":"Jaipur","Crime_Type":"Burglary","Location":"Online","Arrest":"Yes","Date":"03-02-2023 04:22"},
+            {"Incident_ID":"INC-02024","Name":"Ananya Verma","Age":21,"Gender":"Female","State":"Gujarat","City":"Surat","Crime_Type":"Cyber Crime","Location":"Street","Arrest":"No","Date":"18-11-2022 21:15"},
+            {"Incident_ID":"INC-02025","Name":"Rohan Mehta","Age":43,"Gender":"Male","State":"Maharashtra","City":"Nashik","Crime_Type":"Assault","Location":"Public Place","Arrest":"Yes","Date":"09-08-2024 11:05"},
+            {"Incident_ID":"INC-02026","Name":"Siddharth Joshi","Age":29,"Gender":"Male","State":"Haryana","City":"Gurugram","Crime_Type":"Fraud","Location":"Office","Arrest":"No","Date":"14-01-2021 09:30"},
+            {"Incident_ID":"INC-02027","Name":"Pooja Patel","Age":34,"Gender":"Female","State":"Odisha","City":"Bhubaneswar","Crime_Type":"Robbery","Location":"House","Arrest":"Yes","Date":"22-09-2023 23:10"},
+            {"Incident_ID":"INC-02028","Name":"Vikram Singh","Age":48,"Gender":"Male","State":"Gujarat","City":"Ahmedabad","Crime_Type":"Theft","Location":"Market","Arrest":"Yes","Date":"05-04-2025 18:45"},
+            {"Incident_ID":"INC-02029","Name":"Neha Gupta","Age":26,"Gender":"Female","State":"Bihar","City":"Patna","Crime_Type":"Cyber Crime","Location":"Online","Arrest":"No","Date":"11-12-2022 14:20"},
+            {"Incident_ID":"INC-02030","Name":"Karan Malhotra","Age":39,"Gender":"Male","State":"Karnataka","City":"Bengaluru","Crime_Type":"Fraud","Location":"Bank","Arrest":"Yes","Date":"30-06-2024 16:50"},
+            {"Incident_ID":"INC-02031","Name":"Isha Reddy","Age":31,"Gender":"Female","State":"Uttar Pradesh","City":"Lucknow","Crime_Type":"Assault","Location":"Street","Arrest":"No","Date":"07-03-2021 20:05"},
+            {"Incident_ID":"INC-02032","Name":"Rahul Nair","Age":52,"Gender":"Male","State":"Assam","City":"Guwahati","Crime_Type":"Burglary","Location":"Residence","Arrest":"Yes","Date":"19-10-2025 02:15"},
+            {"Incident_ID":"INC-02033","Name":"Sneha Kulkarni","Age":27,"Gender":"Female","State":"Madhya Pradesh","City":"Indore","Crime_Type":"Theft","Location":"Mall","Arrest":"No","Date":"25-01-2026 13:40"},
+            {"Incident_ID":"INC-02034","Name":"Amitabh Roy","Age":60,"Gender":"Male","State":"Maharashtra","City":"Nagpur","Crime_Type":"Robbery","Location":"Bank","Arrest":"Yes","Date":"12-04-2022 10:10"},
+            {"Incident_ID":"INC-02035","Name":"Priya Menon","Age":24,"Gender":"Female","State":"Kerala","City":"Kochi","Crime_Type":"Cyber Crime","Location":"Online","Arrest":"Yes","Date":"08-07-2023 12:30"},
+            {"Incident_ID":"INC-02036","Name":"Devendra Prasad","Age":45,"Gender":"Male","State":"Tamil Nadu","City":"Chennai","Crime_Type":"Fraud","Location":"Office","Arrest":"No","Date":"17-05-2024 15:20"},
+            {"Incident_ID":"INC-02037","Name":"Ritu Choudhury","Age":33,"Gender":"Female","State":"Telangana","City":"Hyderabad","Crime_Type":"Assault","Location":"Public Place","Arrest":"Yes","Date":"29-09-2021 22:00"},
+            {"Incident_ID":"INC-02038","Name":"Varun Kapoor","Age":28,"Gender":"Male","State":"West Bengal","City":"Kolkata","Crime_Type":"Burglary","Location":"House","Arrest":"No","Date":"04-02-2025 03:50"},
+            {"Incident_ID":"INC-02039","Name":"Kavita Das","Age":41,"Gender":"Female","State":"Punjab","City":"Amritsar","Crime_Type":"Theft","Location":"Market","Arrest":"Yes","Date":"15-08-2022 19:10"},
+            {"Incident_ID":"INC-02040","Name":"Suresh Kumar","Age":55,"Gender":"Male","State":"Maharashtra","City":"Mumbai","Crime_Type":"Robbery","Location":"Street","Arrest":"Yes","Date":"21-11-2023 21:40"},
+            {"Incident_ID":"INC-02041","Name":"Meera Sen","Age":23,"Gender":"Female","State":"Rajasthan","City":"Jaipur","Crime_Type":"Fraud","Location":"Online","Arrest":"No","Date":"10-06-2024 11:15"},
+            {"Incident_ID":"INC-02042","Name":"Alok Mishra","Age":37,"Gender":"Male","State":"Bihar","City":"Patna","Crime_Type":"Theft","Location":"Public Transport","Arrest":"Yes","Date":"04-01-2021 08:30"},
+            {"Incident_ID":"INC-02043","Name":"Tanvi Saxena","Age":30,"Gender":"Female","State":"Haryana","City":"Gurugram","Crime_Type":"Cyber Crime","Location":"Office","Arrest":"Yes","Date":"14-09-2025 17:05"},
+            {"Incident_ID":"INC-02044","Name":"Rajesh Khanna","Age":51,"Gender":"Male","State":"Gujarat","City":"Surat","Crime_Type":"Assault","Location":"Market","Arrest":"No","Date":"22-03-2023 20:45"},
+            {"Incident_ID":"INC-02045","Name":"Nisha Agarwal","Age":46,"Gender":"Female","State":"Uttar Pradesh","City":"Lucknow","Crime_Type":"Burglary","Location":"House","Arrest":"Yes","Date":"01-12-2026 01:20"},
+            {"Incident_ID":"INC-02046","Name":"Gaurav Pandey","Age":32,"Gender":"Male","State":"Madhya Pradesh","City":"Indore","Crime_Type":"Fraud","Location":"Bank","Arrest":"No","Date":"18-04-2022 14:10"},
+            {"Incident_ID":"INC-02047","Name":"Divya Rao","Age":25,"Gender":"Female","State":"Karnataka","City":"Bengaluru","Crime_Type":"Theft","Location":"Mall","Arrest":"Yes","Date":"27-07-2024 16:35"},
+            {"Incident_ID":"INC-02048","Name":"Manish Bhatia","Age":44,"Gender":"Male","State":"Punjab","City":"Amritsar","Crime_Type":"Robbery","Location":"Street","Arrest":"Yes","Date":"09-10-2021 22:50"},
+            {"Incident_ID":"INC-02049","Name":"Shruti Nambiar","Age":29,"Gender":"Female","State":"Kerala","City":"Kochi","Crime_Type":"Cyber Crime","Location":"Online","Arrest":"No","Date":"05-05-2025 12:00"},
+            {"Incident_ID":"INC-02050","Name":"Prateek Jain","Age":38,"Gender":"Male","State":"Maharashtra","City":"Pune","Crime_Type":"Burglary","Location":"Residence","Arrest":"Yes","Date":"16-02-2023 03:10"}
+        ];
+
+        // Load dataset from localStorage or initialize
+        function loadStorageData() {
+            const saved = localStorage.getItem('crime_dataset_storage');
+            if (saved) {
+                return JSON.parse(saved);
+            } else {
+                localStorage.setItem('crime_dataset_storage', JSON.stringify(initialDataset));
+                return initialDataset;
+            }
+        }
+
+        function saveStorageData() {
+            localStorage.setItem('crime_dataset_storage', JSON.stringify(dataset));
+        }
+
+        let dataset = loadStorageData();
+        let loggedInOfficer = null;
+        let chartInstances = {};
+
+        function resetDataset() {
+            if (confirm("Are you sure you want to reset all data back to original 50 records?")) {
+                localStorage.removeItem('crime_dataset_storage');
+                dataset = loadStorageData();
+                showAlert("Dataset reset to defaults.", "info");
+                renderDashboard();
+            }
+        }
+
+        // Navigation
+        function showView(viewId) {
+            document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            
+            document.getElementById(`view-${viewId}`).classList.add('active');
+            
+            if (viewId === 'dashboard') renderDashboard();
+            if (viewId === 'records') renderRecordsTable();
+            if (viewId === 'search') populateFilterDropdowns();
+            if (viewId === 'analytics') renderAnalytics();
+            if (viewId === 'state-analysis') renderStateAnalysis();
+            if (viewId === 'trends') renderTrends();
+            if (viewId === 'reports') {
+                renderReports();
+                populateExportStates();
+                populateExportCrimeTypes();
+            }
+            if (viewId === 'crime-map') {
+                populateCrimeMapFilters();
+                renderCrimeMap();
+                setTimeout(function() {
+                    if (crimeMap) crimeMap.invalidateSize();
+                }, 100);
+            }
+        }
+
+        function showAlert(msg, type='success') {
+            document.getElementById('alert-container').innerHTML = `
+                <div class="alert alert-${type} alert-dismissible fade show" role="alert">
+                    ${msg}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>`;
+        }
+
+        // 1. Dashboard
+        function renderDashboard() {
+            const total = dataset.length;
+            const arrests = dataset.filter(d => d.Arrest === 'Yes').length;
+            const rate = ((arrests / total) * 100).toFixed(1);
+
+            const types = {}, states = {}, years = {};
+            dataset.forEach((item) => {
+                types[item.Crime_Type] = (types[item.Crime_Type] || 0) + 1;
+                states[item.State] = (states[item.State] || 0) + 1;
+                const yr = item.Date.split(' ')[0].split('-')[2];
+                years[yr] = (years[yr] || 0) + 1;
+            });
+
+            const topCrime = Object.keys(types).reduce((a, b) => types[a] > types[b] ? a : b, '-');
+
+            document.getElementById('dash-total').innerText = total;
+            document.getElementById('dash-top-crime').innerText = topCrime;
+            document.getElementById('dash-arrest-rate').innerText = `${rate}%`;
+            document.getElementById('dash-states').innerText = Object.keys(states).length;
+
+            createChart('dashTypeChart', 'pie', Object.keys(types), Object.values(types), ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40']);
+            createChart('dashStateChart', 'bar', Object.keys(states), Object.values(states), '#2ecc71');
+            const sortedYears = Object.keys(years).sort();
+            createChart('dashYearChart', 'line', sortedYears, sortedYears.map(y => years[y]), '#e74c3c');
+        }
+
+        // Chart Helper
+        function createChart(canvasId, type, labels, data, colors) {
+            if (chartInstances[canvasId]) chartInstances[canvasId].destroy();
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            chartInstances[canvasId] = new Chart(ctx, {
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Count',
+                        data: data,
+                        backgroundColor: colors,
+                        borderColor: type === 'line' ? colors : undefined,
+                        fill: false
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        // 2. Crime Records
+        function renderRecordsTable() {
+            const tbody = document.getElementById('records-table-body');
+            tbody.innerHTML = '';
+            dataset.forEach((item, index) => {
+                const incId = item.Incident_ID || `INC-${String(2021 + index).padStart(5, '0')}`;
+                const badge = item.Arrest === 'Yes' ? 'bg-success' : 'bg-danger';
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${incId}</strong></td>
+                        <td>${item.Name}</td>
+                        <td>${item.Age}</td>
+                        <td>${item.Gender}</td>
+                        <td>${item.State}</td>
+                        <td>${item.City}</td>
+                        <td>${item.Crime_Type}</td>
+                        <td>${item.Location}</td>
+                        <td><span class="badge ${badge}">${item.Arrest}</span></td>
+                        <td>${item.Date}</td>
+                    </tr>`;
+            });
+        }
+
+        // 3. Search & Filter
+        function populateFilterDropdowns() {
+            const states = [...new Set(dataset.map(d => d.State))].sort();
+            const types = [...new Set(dataset.map(d => d.Crime_Type))].sort();
+            const years = [...new Set(dataset.map(d => d.Date.split(' ')[0].split('-')[2]))].sort().reverse();
+
+            const stSel = document.getElementById('filter-state');
+            const crSel = document.getElementById('filter-crime');
+            const yrSel = document.getElementById('filter-year');
+
+            stSel.innerHTML = '<option value="All">All States</option>' + states.map(s => `<option value="${s}">${s}</option>`).join('');
+            crSel.innerHTML = '<option value="All">All Types</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+            yrSel.innerHTML = '<option value="All">All Years</option>' + years.map(y => `<option value="${y}">${y}</option>`).join('');
+
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const st = document.getElementById('filter-state').value;
+            const cr = document.getElementById('filter-crime').value;
+            const yr = document.getElementById('filter-year').value;
+            const ar = document.getElementById('filter-arrest').value;
+
+            const filtered = dataset.filter(item => {
+                const itemYr = item.Date.split(' ')[0].split('-')[2];
+                return (st === 'All' || item.State === st) &&
+                       (cr === 'All' || item.Crime_Type === cr) &&
+                       (yr === 'All' || itemYr === yr) &&
+                       (ar === 'All' || item.Arrest === ar);
+            });
+
+            document.getElementById('filter-count').innerText = filtered.length;
+            const tbody = document.getElementById('search-table-body');
+            tbody.innerHTML = '';
+            filtered.forEach((item, idx) => {
+                const incId = item.Incident_ID || `INC-${String(2021 + idx).padStart(5, '0')}`;
+                const badge = item.Arrest === 'Yes' ? 'bg-success' : 'bg-danger';
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${incId}</td>
+                        <td>${item.Name}</td>
+                        <td>${item.State}</td>
+                        <td>${item.City}</td>
+                        <td>${item.Crime_Type}</td>
+                        <td><span class="badge ${badge}">${item.Arrest}</span></td>
+                        <td>${item.Date}</td>
+                    </tr>`;
+            });
+        }
+
+        // 4. Analytics
+        function renderAnalytics() {
+            const types = {}, arrests = {}, genders = {};
+            dataset.forEach(d => {
+                types[d.Crime_Type] = (types[d.Crime_Type] || 0) + 1;
+                arrests[d.Arrest] = (arrests[d.Arrest] || 0) + 1;
+                genders[d.Gender] = (genders[d.Gender] || 0) + 1;
+            });
+
+            createChart('analyticsTypeChart', 'bar', Object.keys(types), Object.values(types), '#3498db');
+            createChart('analyticsArrestChart', 'pie', Object.keys(arrests), Object.values(arrests), ['#2ecc71', '#e74c3c']);
+            createChart('analyticsGenderChart', 'bar', Object.keys(genders), Object.values(genders), '#9b59b6');
+        }
+
+        // 5. State Analysis
+        function renderStateAnalysis() {
+            const summary = {};
+            dataset.forEach(d => {
+                if (!summary[d.State]) summary[d.State] = { total: 0, arrests: 0, crimes: {} };
+                summary[d.State].total += 1;
+                if (d.Arrest === 'Yes') summary[d.State].arrests += 1;
+                summary[d.State].crimes[d.Crime_Type] = (summary[d.State].crimes[d.Crime_Type] || 0) + 1;
+            });
+
+            const tbody = document.getElementById('state-analysis-body');
+            tbody.innerHTML = '';
+            Object.keys(summary).sort().forEach(state => {
+                const info = summary[state];
+                const topCrime = Object.keys(info.crimes).reduce((a, b) => info.crimes[a] > info.crimes[b] ? a : b);
+                tbody.innerHTML += `
+                    <tr>
+                        <td><strong>${state}</strong></td>
+                        <td>${info.total}</td>
+                        <td>${info.arrests}</td>
+                        <td><span class="badge bg-secondary">${topCrime}</span></td>
+                    </tr>`;
+            });
+        }
+
+        // 6. Trends
+        function renderTrends() {
+            const years = {};
+            dataset.forEach(d => {
+                const yr = d.Date.split(' ')[0].split('-')[2];
+                years[yr] = (years[yr] || 0) + 1;
+            });
+            const sortedYears = Object.keys(years).sort();
+            createChart('trendsChart', 'line', sortedYears, sortedYears.map(y => years[y]), '#1abc9c');
+        }
+
+        // 7. Reports
+        function renderReports() {
+            document.getElementById('rep-total').innerText = dataset.length;
+            document.getElementById('rep-arrests').innerText = dataset.filter(d => d.Arrest === 'Yes').length;
+            document.getElementById('rep-states').innerText = new Set(dataset.map(d => d.State)).size;
+        }
+
+        // Advanced CSV Export System
+        function createCSV(records) {
+            if (!records || records.length === 0) return '';
+
+            const headers = ['Incident_ID','Name','Age','Gender','State','City','Crime_Type','Location','Arrest','Date'];
+            const csvRows = [headers.join(',')];
+
+            records.forEach((record, index) => {
+                const row = [
+                    record.Incident_ID || `INC-${String(2021 + index).padStart(5, '0')}`,
+                    record.Name, record.Age, record.Gender, record.State, record.City,
+                    record.Crime_Type, record.Location, record.Arrest, record.Date
+                ];
+                csvRows.push(row.map(value => '"' + String(value ?? '').replace(/"/g, '""') + '"').join(','));
+            });
+            return csvRows.join('\r\n');
+        }
+
+        function downloadCSVFile(records, filename) {
+            if (!records || records.length === 0) {
+                alert('No crime records are available for this export.');
+                return;
+            }
+            const csv = createCSV(records);
+            const blob = new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8;'});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+
+        function populateExportStates() {
+            const select = document.getElementById('export-state-select');
+            if (!select) return;
+            const states = [...new Set(dataset.map(record => record.State).filter(Boolean))].sort();
+            select.innerHTML = '<option value="">Select State</option>' + states.map(state => `<option value="${state}">${state}</option>`).join('');
+        }
+
+        function exportStateCSV() {
+            const state = document.getElementById('export-state-select').value;
+            if (!state) { alert('Please select a state first.'); return; }
+            const records = dataset.filter(record => record.State === state);
+            const safeName = state.replace(/[^a-z0-9]/gi, '_');
+            downloadCSVFile(records, `crime_records_${safeName}.csv`);
+        }
+
+        function populateExportCrimeTypes() {
+            const select = document.getElementById('export-crime-select');
+            if (!select) return;
+            const crimeTypes = [...new Set(dataset.map(record => record.Crime_Type).filter(Boolean))].sort();
+            select.innerHTML = '<option value="">Select Crime Type</option>' + crimeTypes.map(crimeType => `<option value="${crimeType}">${crimeType}</option>`).join('');
+        }
+
+        function exportCrimeTypeCSV() {
+            const crimeType = document.getElementById('export-crime-select').value;
+            if (!crimeType) { alert('Please select a crime type first.'); return; }
+            const records = dataset.filter(record => record.Crime_Type === crimeType);
+            const safeName = crimeType.replace(/[^a-z0-9]/gi, '_');
+            downloadCSVFile(records, `crime_records_${safeName}.csv`);
+        }
+
+        function exportFilteredCSV() {
+            const searchInput = document.getElementById('search-input');
+            const stateFilter = document.getElementById('filter-state');
+            const crimeFilter = document.getElementById('filter-crime');
+            const arrestFilter = document.getElementById('filter-arrest');
+
+            if (!stateFilter || !crimeFilter || !arrestFilter) {
+                downloadCSVFile(dataset, 'crime_records.csv');
+                return;
+            }
+
+            const searchText = searchInput ? searchInput.value.toLowerCase().trim() : '';
+            const selectedState = stateFilter.value;
+            const selectedCrime = crimeFilter.value;
+            const selectedArrest = arrestFilter.value;
+            const selectedYear = document.getElementById('filter-year')?.value || 'All';
+
+            const records = dataset.filter(record => {
+                const searchableText = Object.values(record).join(' ').toLowerCase();
+                const itemYear = String(record.Date || '').split(' ')[0].split('-')[2];
+                return (!searchText || searchableText.includes(searchText)) &&
+                       (selectedState === 'All' || selectedState === '' || record.State === selectedState) &&
+                       (selectedCrime === 'All' || selectedCrime === '' || record.Crime_Type === selectedCrime) &&
+                       (selectedArrest === 'All' || selectedArrest === '' || record.Arrest === selectedArrest) &&
+                       (selectedYear === 'All' || selectedYear === '' || itemYear === selectedYear);
+            });
+
+            downloadCSVFile(records, 'filtered_crime_records.csv');
+        }
+
+        function downloadCSV() {
+            let csv = "Incident_ID,Name,Age,Gender,State,City,Crime_Type,Location,Arrest,Date\n";
+            dataset.forEach((row, idx) => {
+                const incId = row.Incident_ID || `INC-${String(2021 + idx).padStart(5, '0')}`;
+                csv += `"${incId}","${row.Name}",${row.Age},"${row.Gender}","${row.State}","${row.City}","${row.Crime_Type}","${row.Location}","${row.Arrest}","${row.Date}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.setAttribute('href', url);
+            a.setAttribute('download', 'crime_analytics_report.csv');
+            a.click();
+        }
+
+
+        // Crime Map
+        const cityCoordinates = {
+            "Mumbai, Maharashtra": [19.0760, 72.8777],
+            "Pune, Maharashtra": [18.5204, 73.8567],
+            "Nashik, Maharashtra": [19.9975, 73.7898],
+            "Nagpur, Maharashtra": [21.1458, 79.0882],
+            "Jaipur, Rajasthan": [26.9124, 75.7873],
+            "Surat, Gujarat": [21.1702, 72.8311],
+            "Ahmedabad, Gujarat": [23.0225, 72.5714],
+            "Gurugram, Haryana": [28.4595, 77.0266],
+            "Bhubaneswar, Odisha": [20.2961, 85.8245],
+            "Patna, Bihar": [25.5941, 85.1376],
+            "Bengaluru, Karnataka": [12.9716, 77.5946],
+            "Lucknow, Uttar Pradesh": [26.8467, 80.9462],
+            "Guwahati, Assam": [26.1445, 91.7362],
+            "Indore, Madhya Pradesh": [22.7196, 75.8577],
+            "Kochi, Kerala": [9.9312, 76.2673],
+            "Chennai, Tamil Nadu": [13.0827, 80.2707],
+            "Hyderabad, Telangana": [17.3850, 78.4867],
+            "Kolkata, West Bengal": [22.5726, 88.3639],
+            "Amritsar, Punjab": [31.6340, 74.8723]
+        };
+
+        let crimeMap = null;
+        let crimeMapMarkers = [];
+
+        function initializeCrimeMap() {
+            if (crimeMap) return;
+
+            crimeMap = L.map('crime-map').setView([22.9734, 78.6569], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(crimeMap);
+        }
+
+        function populateCrimeMapFilters() {
+            const stateSelect = document.getElementById('map-filter-state');
+            const citySelect = document.getElementById('map-filter-city');
+            const crimeSelect = document.getElementById('map-filter-crime');
+            const yearSelect = document.getElementById('map-filter-year');
+
+            const oldState = stateSelect.value;
+            const oldCity = citySelect.value;
+            const oldCrime = crimeSelect.value;
+            const oldYear = yearSelect.value;
+
+            const states = [...new Set(dataset.map(d => d.State).filter(Boolean))].sort();
+            const crimes = [...new Set(dataset.map(d => d.Crime_Type).filter(Boolean))].sort();
+            const years = [...new Set(
+                dataset.map(d => d.Date.split(' ')[0].split('-')[2]).filter(Boolean)
+            )].sort().reverse();
+
+            const cities = [...new Set(
+                dataset
+                    .filter(d => oldState === 'All' || d.State === oldState)
+                    .map(d => d.City)
+                    .filter(Boolean)
+            )].sort();
+
+            stateSelect.innerHTML =
+                '<option value="All">All States</option>' +
+                states.map(s => `<option value="${s}">${s}</option>`).join('');
+
+            citySelect.innerHTML =
+                '<option value="All">All Cities</option>' +
+                cities.map(c => `<option value="${c}">${c}</option>`).join('');
+
+            crimeSelect.innerHTML =
+                '<option value="All">All Crime Types</option>' +
+                crimes.map(c => `<option value="${c}">${c}</option>`).join('');
+
+            yearSelect.innerHTML =
+                '<option value="All">All Years</option>' +
+                years.map(y => `<option value="${y}">${y}</option>`).join('');
+
+            if (states.includes(oldState)) stateSelect.value = oldState;
+            else stateSelect.value = 'All';
+
+            if (cities.includes(oldCity)) citySelect.value = oldCity;
+            else citySelect.value = 'All';
+
+            if (crimes.includes(oldCrime)) crimeSelect.value = oldCrime;
+            else crimeSelect.value = 'All';
+
+            if (years.includes(oldYear)) yearSelect.value = oldYear;
+            else yearSelect.value = 'All';
+        }
+
+        function handleMapStateChange() {
+            const state = document.getElementById('map-filter-state').value;
+            const citySelect = document.getElementById('map-filter-city');
+
+            const cities = [...new Set(
+                dataset
+                    .filter(d => state === 'All' || d.State === state)
+                    .map(d => d.City)
+                    .filter(Boolean)
+            )].sort();
+
+            citySelect.innerHTML =
+                '<option value="All">All Cities</option>' +
+                cities.map(c => `<option value="${c}">${c}</option>`).join('');
+
+            renderCrimeMap();
+        }
+
+        function renderCrimeMap() {
+            initializeCrimeMap();
+
+            const state = document.getElementById('map-filter-state').value;
+            const city = document.getElementById('map-filter-city').value;
+            const crime = document.getElementById('map-filter-crime').value;
+            const year = document.getElementById('map-filter-year').value;
+
+            const filtered = dataset.filter(item => {
+                const itemYear = item.Date.split(' ')[0].split('-')[2];
+
+                return (state === 'All' || item.State === state) &&
+                       (city === 'All' || item.City === city) &&
+                       (crime === 'All' || item.Crime_Type === crime) &&
+                       (year === 'All' || itemYear === year);
+            });
+
+            crimeMapMarkers.forEach(marker => crimeMap.removeLayer(marker));
+            crimeMapMarkers = [];
+
+            document.getElementById('map-crime-count').innerText =
+                `${filtered.length} crime${filtered.length === 1 ? '' : 's'} shown`;
+
+            const bounds = [];
+
+            filtered.forEach((item, index) => {
+                const key = `${item.City}, ${item.State}`;
+                const coords = cityCoordinates[key];
+
+                if (!coords) return;
+
+                const incId = item.Incident_ID ||
+                    `INC-${String(2021 + index).padStart(5, '0')}`;
+
+                const popup = `
+                    <div style="min-width:230px;">
+                        <h6><strong>${incId}</strong></h6>
+                        <hr class="my-2">
+                        <div><strong>Name:</strong> ${item.Name}</div>
+                        <div><strong>Age:</strong> ${item.Age}</div>
+                        <div><strong>Gender:</strong> ${item.Gender}</div>
+                        <div><strong>Crime:</strong> ${item.Crime_Type}</div>
+                        <div><strong>State:</strong> ${item.State}</div>
+                        <div><strong>City:</strong> ${item.City}</div>
+                        <div><strong>Location:</strong> ${item.Location}</div>
+                        <div><strong>Arrest:</strong> ${item.Arrest}</div>
+                        <div><strong>Date:</strong> ${item.Date}</div>
+                    </div>
+                `;
+
+                const marker = L.marker(coords)
+                    .addTo(crimeMap)
+                    .bindPopup(popup);
+
+                crimeMapMarkers.push(marker);
+                bounds.push(coords);
+            });
+
+            if (bounds.length > 0) {
+                crimeMap.fitBounds(bounds, {
+                    padding: [40, 40],
+                    maxZoom: 10
+                });
+            } else {
+                crimeMap.setView([22.9734, 78.6569], 5);
+            }
+
+            setTimeout(function() {
+                crimeMap.invalidateSize();
+            }, 100);
+        }
+
+        // 9. Officer Authentication
+        function handleOfficerLogin(e) {
+            e.preventDefault();
+            const badge = document.getElementById('login-badge').value;
+            const pass = document.getElementById('login-password').value;
+
+            if (badge === 'OFF-1001' && pass === 'Officer@123') {
+                loggedInOfficer = 'Senior Inspector Sharma';
+                document.getElementById('logged-officer-name').innerText = loggedInOfficer;
+                
+                document.getElementById('auth-nav-container').innerHTML = `
+                    <li class="nav-item"><a class="nav-link btn btn-outline-light btn-sm me-2 px-3" onclick="showView('officer-dashboard')">Officer Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-danger btn-sm px-3" onclick="handleLogout()">Logout</a></li>`;
+                
+                showAlert('Logged in successfully.', 'success');
+                showView('officer-dashboard');
+            } else {
+                showAlert('Invalid Badge ID or Password.', 'danger');
+            }
+        }
+
+        function handleLogout() {
+            loggedInOfficer = null;
+            document.getElementById('auth-nav-container').innerHTML = `
+                <li class="nav-item"><a class="nav-link btn btn-primary btn-sm text-white px-3" onclick="showView('officer-login')">Officer Login</a></li>`;
+            showAlert('Logged out successfully.', 'info');
+            showView('dashboard');
+        }
+
+        function handleAddIncident(e) {
+            e.preventDefault();
+            const incId = document.getElementById('add-inc-id').value;
+            
+            const newRecord = {
+                Incident_ID: incId,
+                Name: document.getElementById('add-name').value,
+                Age: parseInt(document.getElementById('add-age').value),
+                Gender: document.getElementById('add-gender').value,
+                State: document.getElementById('add-state').value,
+                City: document.getElementById('add-city').value,
+                Crime_Type: document.getElementById('add-crime').value,
+                Location: document.getElementById('add-location').value,
+                Arrest: document.getElementById('add-arrest').value,
+                Date: document.getElementById('add-date').value
+            };
+
+            dataset.push(newRecord);
+            saveStorageData(); // Persists data permanently in local storage
+            
+            showAlert(`Record ${incId} registered and saved permanently!`, 'success');
+            e.target.reset();
+        }
+
+        window.onload = function() {
+            renderDashboard();
+        };
+    </script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
